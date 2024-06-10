@@ -5,7 +5,8 @@
   "main": "lib/devtools-detector.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "example": "http-server -o"
   },
   "repository": {
