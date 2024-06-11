@@ -5,7 +5,7 @@ onmessage = function(event) {
   var action = event.data;
   var startTime = performance.now()
 
-  console[action.type](...action.payload);
+  // console[action.type](...action.payload);
   postMessage({
     id: action.id,
     time: performance.now() - startTime
@@ -57,7 +57,7 @@ export class WorkerConsole {
     };
   }
 
-  private async send(type: string, ...messages: any[]) {
+  private async send (type: string, ...messages: any[]) {
     const id = getId();
     return new Promise<{ time: number }>((resolve, reject) => {
       this.callbacks.set(id, resolve);

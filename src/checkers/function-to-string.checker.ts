@@ -4,7 +4,7 @@ import { clear, log } from '../shared/console';
 import { isIpad, isIphone } from '../shared/system-info';
 import { match } from '../utils/match.utils';
 
-function devtoolsTestFunction() {
+function devtoolsTestFunction () {
   // nothing todo
 }
 
@@ -18,15 +18,15 @@ devtoolsTestFunction.toString = () => {
 
 export const functionToStringChecker: DevtoolsStatusChecker = {
   name: 'function-to-string',
-  async isOpen(): Promise<boolean> {
+  async isOpen (): Promise<boolean> {
     count = 0;
 
-    log(devtoolsTestFunction);
+    // log(devtoolsTestFunction);
     clear();
 
     return count === 2;
   },
-  async isEnable(): Promise<boolean> {
+  async isEnable (): Promise<boolean> {
     return match({
       /** 匹配所有浏览器 */
       includes: [true],

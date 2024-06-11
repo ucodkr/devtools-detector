@@ -8,7 +8,7 @@ import { getLargeObjectArray } from '../utils/large-object.utils';
 let maxPrintTime = 0;
 export const workerPerformanceChecker: DevtoolsStatusChecker = {
   name: 'worker-performance',
-  async isOpen(): Promise<boolean> {
+  async isOpen (): Promise<boolean> {
     const workerConsole = getWorkerConsole();
 
     if (workerConsole == null) return false;
@@ -17,14 +17,14 @@ export const workerPerformanceChecker: DevtoolsStatusChecker = {
     const logPrintTime = await calcLogPrintTime(workerConsole);
     maxPrintTime = Math.max(maxPrintTime, logPrintTime);
 
-    await workerConsole.clear();
+    // await workerConsole.clear();
 
     if (tablePrintTime === 0) return false;
     if (maxPrintTime === 0) return false;
 
     return tablePrintTime > maxPrintTime * 10;
   },
-  async isEnable(): Promise<boolean> {
+  async isEnable (): Promise<boolean> {
     return match({
       /** 暂时仅用于 Chrome 浏览器 */
       includes: [isChrome],
@@ -33,7 +33,7 @@ export const workerPerformanceChecker: DevtoolsStatusChecker = {
   },
 };
 
-async function calcTablePrintTime(
+async function calcTablePrintTime (
   workerConsole: WorkerConsole
 ): Promise<number> {
   const largeObjectArray = getLargeObjectArray();
@@ -41,7 +41,7 @@ async function calcTablePrintTime(
   return time;
 }
 
-async function calcLogPrintTime(workerConsole: WorkerConsole): Promise<number> {
+async function calcLogPrintTime (workerConsole: WorkerConsole): Promise<number> {
   const largeObjectArray = getLargeObjectArray();
   const { time } = await workerConsole.log(largeObjectArray);
   return time;

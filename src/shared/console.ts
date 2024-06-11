@@ -5,21 +5,22 @@ import { isEdge, isIE } from './context';
  * 但是 ie 浏览器下不能缓存 console.log 之类的方法, 因为每次打开浏览器都是不同的 console, 调用缓存后的方法则会异常
  *
  */
-function cacheConsoleMethod<K extends keyof Console>(name: K): Console[K] {
-  if (console) {
-    if (isIE || isEdge) {
-      // IE 没有 console.table
-      if (name === 'log' || name === 'clear') {
-        return (...args: any[]) => {
-          console[name].apply(console, args);
-        };
-      }
-    } else {
-      return console[name];
-    }
-  }
+function cacheConsoleMethod<K extends keyof Console> (name: K): Console[K] {
+  return () => { }
+  // if (console) {
+  //   if (isIE || isEdge) {
+  //     // IE 没有 console.table
+  //     if (name === 'log' || name === 'clear') {
+  //       return (...args: any[]) => {
+  //         console[name].apply(console, args);
+  //       };
+  //     }
+  //   } else {
+  //     return console[name];
+  //   }
+  // }
 
-  return (..._args: any[]) => {};
+  // return (..._args: any[]) => { };
 }
 
 export const log = cacheConsoleMethod('log');

@@ -13,15 +13,15 @@ reg.toString = () => {
 
 export const regToStringChecker: DevtoolsStatusChecker = {
   name: 'reg-to-string',
-  async isOpen(): Promise<boolean> {
+  async isOpen (): Promise<boolean> {
     isOpen = false;
 
-    log(reg);
+    // log(reg);
     clear();
 
     return isOpen;
   },
-  async isEnable(): Promise<boolean> {
+  async isEnable (): Promise<boolean> {
     return match({
       /** 匹配所有浏览器 */
       includes: [true],

@@ -9,14 +9,14 @@ declare global {
 
 let isOpen = false;
 const devtoolsFormatter = {
-  header() {
+  header () {
     isOpen = true;
     return null;
   },
 };
 export const devtoolsFormatterChecker: DevtoolsStatusChecker = {
   name: 'DevtoolsFormatters',
-  async isOpen(): Promise<boolean> {
+  async isOpen (): Promise<boolean> {
     if (window.devtoolsFormatters) {
       if (window.devtoolsFormatters.indexOf(devtoolsFormatter) === -1) {
         window.devtoolsFormatters.push(devtoolsFormatter);
@@ -26,12 +26,12 @@ export const devtoolsFormatterChecker: DevtoolsStatusChecker = {
     }
 
     isOpen = false;
-    log({});
+    // log({});
     clear();
 
     return isOpen;
   },
-  async isEnable(): Promise<boolean> {
+  async isEnable (): Promise<boolean> {
     return true;
   },
 };
